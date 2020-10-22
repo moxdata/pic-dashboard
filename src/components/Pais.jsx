@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Pais() {
   const [paises, setPaises] = React.useState([])
-  const [url, setUrl] = React.useState('http://pic-api.peruviandigital.club/ubigeo/api/paises/?format=json')
+  const [url, setUrl] = React.useState('https://pic-api.peruviandigital.club/ubigeo/api/paises/?format=json')
 
   React.useEffect(()=>{
     // console.log("ejemplo")
