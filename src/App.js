@@ -1,20 +1,13 @@
 import React from 'react';
 import './App.css';
-
-function App() {
-  return (
-    <div className="container">
-      <h1>CRUD App with Hooks</h1>
-      <div className="flex-row">
-        <div className="flex-large">
-          <h2>Add user</h2>
-        </div>
-        <div className="flex-large">
-          <h2>View users</h2>
-        </div>
-      </div>
-    </div>
-  );
-}
+import { Admin, Resource, ListGuesser } from 'react-admin';
+import drfProvider from './dataProvider'
+ 
+const dataProvider = drfProvider('http://localhost:8000/ubigeo/api');
+const App = () => (
+  <Admin dataProvider={dataProvider}>
+    <Resource name="paises" list={ListGuesser} />
+  </Admin>
+)
 
 export default App;
