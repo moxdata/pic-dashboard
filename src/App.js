@@ -1,19 +1,10 @@
 import React from 'react';
-import './App.css';
-import { fetchUtils, Admin, Resource } from 'react-admin';
-import drfProvider from './dataProvider';
-import authProvider from './authProvider';
+import { Admin, Resource } from 'react-admin';
+import drfProvider from './auth/dataProvider';
+import authProvider from './auth/authProvider';
+import httpClient from './auth/httpClient';
 import { PaisList, PaisEdit } from './components/paises';
-
-const httpClient = (url, options = {}) => {
-  if (!options.headers) {
-      options.headers = new Headers();
-  }
-  const username = localStorage.getItem('username');
-  const password = localStorage.getItem('password');
-  options.headers.set('Authorization', 'Basic '+btoa(`${username}:${password}`));
-  return fetchUtils.fetchJson(url, options);
-};
+import { DepartamentoList, DepartamentoEdit } from './components/departamentos';
 
 const dataProvider = drfProvider(`${process.env.REACT_APP_API_URL}/ubigeo/api`, httpClient);
 const App = () => (
@@ -22,6 +13,7 @@ const App = () => (
     dataProvider={dataProvider}
   >
     <Resource name="paises" list={PaisList} edit={PaisEdit}/>
+    <Resource name="departamentos" list={DepartamentoList} edit={DepartamentoEdit}/>
   </Admin>
 )
 
