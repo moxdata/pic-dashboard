@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import { fetchUtils, Admin, Resource, ListGuesser } from 'react-admin';
+import { fetchUtils, Admin, Resource } from 'react-admin';
 import drfProvider from './dataProvider';
 import authProvider from './authProvider';
+import { PaisList, PaisEdit } from './components/paises';
 
 const httpClient = (url, options = {}) => {
   if (!options.headers) {
@@ -20,7 +21,7 @@ const App = () => (
     authProvider={authProvider}
     dataProvider={dataProvider}
   >
-    <Resource name="paises" list={ListGuesser} />
+    <Resource name="paises" list={PaisList} edit={PaisEdit}/>
   </Admin>
 )
 
