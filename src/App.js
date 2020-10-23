@@ -8,14 +8,9 @@ const httpClient = (url, options = {}) => {
   if (!options.headers) {
       options.headers = new Headers();
   }
-  // const { token } = JSON.parse(localStorage.getItem('auth'));
   const username = localStorage.getItem('username');
   const password = localStorage.getItem('password');
-  // console.log("username:", username, "password:", password);
-  // 'Authorization': 'Basic '+btoa('admin:@Spicsivesoft'),
   options.headers.set('Authorization', 'Basic '+btoa(`${username}:${password}`));
-  // options.headers.set('Authorization', 'Basic '+btoa('admin:@Spicsivesoft'));
-  console.log("auth:", {'url': url, 'headers': options.headers.get('Authorization')})
   return fetchUtils.fetchJson(url, options);
 };
 
